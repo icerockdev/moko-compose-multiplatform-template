@@ -1,9 +1,10 @@
+
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import dev.icerock.moko.graphics.Color
 import dev.icerock.moko.resources.desc.desc
 import org.icerock.template.MR
 
@@ -11,6 +12,7 @@ import org.icerock.template.MR
 private var context: Context = AppCompatActivity()
 
 actual fun getMokoResourcesText(): String = MR.strings.moko_resources_title.desc().toString(context)
+actual fun getMokoResourcesColor(): Color = MR.colors.moko_color_title.color
 
 @Composable
 fun MainView() {
