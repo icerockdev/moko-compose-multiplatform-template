@@ -9,6 +9,16 @@ plugins {
     id("org.jetbrains.compose") apply false
 }
 
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath("dev.icerock.moko:resources-generator:0.20.1")
+    }
+}
+
 allprojects {
     repositories {
         google()

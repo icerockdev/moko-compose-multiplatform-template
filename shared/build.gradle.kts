@@ -1,13 +1,20 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
 plugins {
+    id("com.android.library")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-    id("com.android.library")
     id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 version = "1.0-SNAPSHOT"
+
+repositories {
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+}
 
 kotlin {
     android()
@@ -57,6 +64,15 @@ kotlin {
         }
     }
 }
+
+dependencies {
+    commonMainApi("dev.icerock.moko:resources:0.20.1")
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "org.icerock.template"
+}
+
 
 android {
     compileSdk = 33
