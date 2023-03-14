@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -47,7 +48,7 @@ internal fun App() {
                     style = TextStyle(
                         textAlign = TextAlign.Center,
                         color = color,
-                        fontFamily = getMokoResourcesFont()?.fontFamily,
+                        fontFamily = FontFamily(Font(getMokoResourcesFont())),
                         fontSize = 30.sp
                     ),
                 )
@@ -82,4 +83,4 @@ internal fun App() {
 
 expect fun getMokoResourcesText(): String
 expect fun getMokoResourcesColor(): GraphicsColor
-expect fun getMokoResourcesFont(): Int?
+expect fun getMokoResourcesFont(): Int
