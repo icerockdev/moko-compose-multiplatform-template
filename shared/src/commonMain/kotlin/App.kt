@@ -28,6 +28,7 @@ internal fun App() {
                 textAlign = TextAlign.Center,
                 text = text
             )
+
             Button(
                 onClick = {
                     text = getMokoResourcesText()
