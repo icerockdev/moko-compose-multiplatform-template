@@ -10,6 +10,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
+                implementation("dev.icerock.moko:resources-compose:0.20.1")
+
             }
         }
     }

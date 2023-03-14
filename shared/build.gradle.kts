@@ -33,7 +33,8 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
@@ -42,10 +43,12 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 api("androidx.activity:activity-compose:1.6.1")
@@ -54,14 +57,16 @@ kotlin {
                 api("dev.icerock.moko:resources-compose:0.20.1")
             }
         }
+
         val iosMain by getting
+
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
         }
+
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
-                implementation("dev.icerock.moko:resources-compose:0.20.1")
             }
         }
     }

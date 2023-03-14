@@ -1,8 +1,19 @@
+import android.annotation.SuppressLint
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import dev.icerock.moko.resources.desc.desc
 import org.icerock.template.MR
 
-@Composable
-actual fun getMokoResourcesText(): String = stringResource(MR.strings.moko_resources_title.resourceId)
+@SuppressLint("StaticFieldLeak")
+private var context: Context = AppCompatActivity()
 
-@Composable fun MainView() = App()
+actual fun getMokoResourcesText(): String = MR.strings.moko_resources_title.desc().toString(context)
+
+@Composable
+fun MainView() {
+    context = LocalContext.current
+    App()
+}
