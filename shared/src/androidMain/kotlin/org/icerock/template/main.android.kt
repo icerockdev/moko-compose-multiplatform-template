@@ -3,8 +3,8 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.myapplication.common.MR
 import dev.icerock.moko.resources.desc.desc
-import org.icerock.template.MR
 
 @SuppressLint("StaticFieldLeak")
 private var context: Context = AppCompatActivity()
