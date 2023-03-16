@@ -1,10 +1,10 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
 plugins {
+    id("org.jetbrains.compose")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-network-generator")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
@@ -39,6 +39,7 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation("dev.icerock.moko:mvvm-core:0.15.0")
+                implementation("io.ktor:ktor-client-core:2.2.4")
                 api("dev.icerock.moko:network:0.20.1")
             }
         }
@@ -47,6 +48,7 @@ kotlin {
                 api("androidx.activity:activity-compose:1.6.1")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
+                api("io.ktor:ktor-client-okhttp:2.2.4")
             }
         }
         val iosMain by getting

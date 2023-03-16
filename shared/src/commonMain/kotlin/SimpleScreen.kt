@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -17,19 +18,41 @@ fun SimpleScreen(
     viewModel: SimpleViewModel = remember { SimpleViewModel() }
 ) {
     val count: String by viewModel.count.collectAsState()
+    val jokes: String by viewModel.someJoke.collectAsState()
 
     Column(
         modifier = Modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = count
+        //MOKO MVVM
+        TextAndButtonTemplate(
+            title = count,
+            buttonText = "Click and get moko mvvm",
+            onButtonClick = viewModel::onCountClick
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = viewModel::onCountClick
-        ) {
-            Text(text = "Click on me")
-        }
+
+        //MOKO NETWORK
+        TextAndButtonTemplate(
+            title = jokes.ifEmpty { "Do you need some jokes?" },
+            buttonText = "Click and get moko network",
+            onButtonClick = viewModel::apiRequest
+        )
     }
+}
+
+@Composable
+fun TextAndButtonTemplate(
+    title: String,
+    buttonText: String,
+    onButtonClick: () -> Unit
+) {
+    Text(
+        text = title,
+        textAlign = TextAlign.Center
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Button(onClick = onButtonClick) {
+        Text(text = buttonText)
+    }
+    Spacer(modifier = Modifier.height(10.dp))
 }

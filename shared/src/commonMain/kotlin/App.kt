@@ -23,24 +23,23 @@ internal fun App() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-
-            Button(
-                onClick = {
-                    text = "Hello, ${getPlatformName()}"
+            if (!isShowMokoMvvmView) {
+                Button(
+                    onClick = {
+                        text = "Hello, ${getPlatformName()}"
+                    }
+                ) {
+                    Text(text)
                 }
-            ) {
-                Text(text)
-            }
 
-            Button(
-                onClick = {
-                    isShowMokoMvvmView = true
+                Button(
+                    onClick = {
+                        isShowMokoMvvmView = true
+                    }
+                ) {
+                    Text("Show moko mvvm engines")
                 }
-            ) {
-                Text("Show moko mvvm")
-            }
-
-            if (isShowMokoMvvmView) {
+            } else {
                 SimpleScreen()
             }
         }
