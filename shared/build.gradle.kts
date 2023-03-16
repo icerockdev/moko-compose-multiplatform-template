@@ -37,6 +37,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation("dev.icerock.moko:network:0.20.1")
             }
         }
         val androidMain by getting {
