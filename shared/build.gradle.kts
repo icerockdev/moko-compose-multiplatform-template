@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-network-generator")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 version = "1.0-SNAPSHOT"
@@ -62,6 +63,7 @@ kotlin {
 mokoNetwork {
     spec("jokes") {
         inputSpec = file("src/api/openapi.yml")
+        isInternal = false
     }
 }
 

@@ -9,6 +9,7 @@ pluginManagement {
         val kotlinVersion = extra["kotlin.version"] as String
         val agpVersion = extra["agp.version"] as String
         val composeVersion = extra["compose.version"] as String
+        val kotlinSerializationVersion = extra["kotlinSerialization.version"] as String
         val mokoNetworkVersion = extra["mokoNetwork.version"] as String
 
         kotlin("jvm").version(kotlinVersion)
@@ -19,6 +20,7 @@ pluginManagement {
         id("com.android.library").version(agpVersion)
         id("org.jetbrains.compose").version(composeVersion)
         id("dev.icerock.mobile.multiplatform-network-generator").version(mokoNetworkVersion)
+        id("org.jetbrains.kotlin.plugin.serialization").version(kotlinSerializationVersion)
     }
 }
 
