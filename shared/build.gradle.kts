@@ -37,6 +37,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation("dev.icerock.moko:mvvm-core:0.15.0")
             }
         }
         val androidMain by getting {
