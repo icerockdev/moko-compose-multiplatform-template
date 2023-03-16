@@ -59,6 +59,7 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.common)
                 api("io.ktor:ktor-client-okhttp:2.2.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.6.4")
             }
         }
     }

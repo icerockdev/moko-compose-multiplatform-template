@@ -35,7 +35,9 @@ fun SimpleScreen(
         TextAndButtonTemplate(
             title = jokes.ifEmpty { "Do you need some jokes?" },
             buttonText = "Click and get moko network",
-            onButtonClick = viewModel::apiRequest
+            onButtonClick = {
+                viewModel.apiRequest()
+            }
         )
     }
 }
