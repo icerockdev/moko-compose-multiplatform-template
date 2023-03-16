@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-network-generator")
 }
 
 version = "1.0-SNAPSHOT"
@@ -26,7 +27,6 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
@@ -37,7 +37,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-                implementation("dev.icerock.moko:network:0.20.1")
+                api("dev.icerock.moko:network:0.20.1")
             }
         }
         val androidMain by getting {
@@ -56,6 +56,12 @@ kotlin {
                 implementation(compose.desktop.common)
             }
         }
+    }
+}
+
+mokoNetwork {
+    spec("jokes") {
+        inputSpec = file("src/api/openapi.yml")
     }
 }
 

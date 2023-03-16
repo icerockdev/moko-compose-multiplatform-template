@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: 'Jokes'
+  version: 0.1.0
+paths:
+  /random:
+    get:
+      tags:
+        - jokes
+      operationId: 'getRandomJoke'
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RandomJokeResponse'
+
+components:
+  schemas:
+
+    RandomJokeResponse:
+      type: object
+      properties:
+        icon_url:
+          type: string
+        id:
+          type: string
+        url:
+          type: string
+        value:
+          type: string
+      required:
+        - icon_url
+        - id
+        - url
+        - value
