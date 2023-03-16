@@ -38,6 +38,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation("dev.icerock.moko:mvvm-core:0.15.0")
                 api("dev.icerock.moko:network:0.20.1")
             }
         }
