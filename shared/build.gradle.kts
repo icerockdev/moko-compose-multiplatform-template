@@ -38,8 +38,8 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-                implementation("dev.icerock.moko:mvvm-core:0.15.0")
-                implementation("io.ktor:ktor-client-core:2.2.4")
+                api("dev.icerock.moko:mvvm-core:0.15.0")
+                api("io.ktor:ktor-client-core:2.2.4")
                 api("dev.icerock.moko:network:0.20.1")
             }
         }
@@ -58,6 +58,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+                api("io.ktor:ktor-client-okhttp:2.2.4")
             }
         }
     }
