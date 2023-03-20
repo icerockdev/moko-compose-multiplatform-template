@@ -32,8 +32,9 @@ kotlin {
     }
 
     sourceSets {
-        val mokoMvvmVersion = extra["mvvm.version"] as String
-        val mokoNetworkVersion = extra["network.version"] as String
+        val mokoMvvmVersion = extra["moko.mvvm.version"] as String
+        val mokoNetworkVersion = extra["moko.network.version"] as String
+        val mokoResourcesVersion = extra["moko.resources.version"] as String
         val ktorVersion = extra["ktor.version"] as String
 
         val commonMain by getting {
@@ -47,10 +48,13 @@ kotlin {
                 implementation("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
                 implementation("dev.icerock.moko:network:$mokoNetworkVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
-                api("dev.icerock.moko:mvvm-core:0.15.0")
-                api("io.ktor:ktor-client-core:2.2.4")
-                api("dev.icerock.moko:network:0.20.1")
-                api("dev.icerock.moko:resources:0.20.1")
+                implementation("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("dev.icerock.moko:network:$mokoNetworkVersion")
+                implementation("dev.icerock.moko:resources:$mokoResourcesVersion")
+                implementation("dev.icerock.moko:biometry:0.2.0")
+//                implementation("dev.icerock.moko:biometry-iosarm64:0.2.0")
+
 //                api("dev.icerock.moko:resources-compose:0.20.1")
 
                 //Could not resolve all dependencies for configuration ':shared:iosSimulatorArm64CompileKlibraries'.
@@ -66,8 +70,6 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
                 api("io.ktor:ktor-client-okhttp:$ktorVersion")
-                api("io.ktor:ktor-client-okhttp:2.2.4")
-                api("dev.icerock.moko:biometry:0.2.0")
             }
         }
         val iosMain by getting {
@@ -78,6 +80,7 @@ kotlin {
 
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
+
         }
 
         val desktopMain by getting {
