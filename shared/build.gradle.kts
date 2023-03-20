@@ -31,8 +31,9 @@ kotlin {
     }
 
     sourceSets {
+        val mokoMvvmVersion = extra["mokoMvvm.version"] as String
+
         val commonMain by getting {
-            val mokoMvvmVersion = extra["mokoMvvm.version"] as String
 
             dependencies {
                 implementation(compose.runtime)
@@ -41,9 +42,9 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
-                api("dev.icerock.moko:mvvm-core:0.15.0")
-                api("io.ktor:ktor-client-core:2.2.4")
-                api("dev.icerock.moko:network:0.20.1")
+                implementation("dev.icerock.moko:mvvm-core:0.15.0")
+                implementation("dev.icerock.moko:network:0.20.1")
+                implementation("io.ktor:ktor-client-core:2.2.4")
             }
         }
         val androidMain by getting {
