@@ -18,7 +18,7 @@ fun SimpleScreen(
     viewModel: SimpleViewModel = remember { SimpleViewModel() }
 ) {
     val count: String by viewModel.count.collectAsState()
-    val jokes: String by viewModel.someJoke.collectAsState()
+    val jokeText: String by viewModel.someJoke.collectAsState()
 
     Column(
         modifier = Modifier.padding(16.dp),
@@ -33,11 +33,9 @@ fun SimpleScreen(
 
         //MOKO NETWORK
         TextAndButtonTemplate(
-            title = jokes.ifEmpty { "Do you need some jokes?" },
+            title = jokeText.ifEmpty { "Do you need some jokes?" },
             buttonText = "Click and get moko network",
-            onButtonClick = {
-                viewModel.apiRequest()
-            }
+            onButtonClick = viewModel::onJokePress
         )
     }
 }

@@ -11,7 +11,7 @@ pluginManagement {
         val composeVersion = extra["compose.version"] as String
         val mokoResourcesVersion = extra["mokoResources.version"] as String
         val kotlinSerializationVersion = extra["kotlinSerialization.version"] as String
-        val mokoNetworkVersion = extra["mokoNetwork.version"] as String
+        val mokoNetworkVersion = extra["network.version"] as String
 
         kotlin("jvm").version(kotlinVersion)
         kotlin("multiplatform").version(kotlinVersion)

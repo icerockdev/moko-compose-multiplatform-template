@@ -15,35 +15,22 @@ import androidx.compose.ui.Modifier
 @Composable
 internal fun App() {
     MaterialTheme {
-        var text by remember { mutableStateOf("Hello, World!") }
-        var isShowMokoMvvmView by remember { mutableStateOf(false) }
+        var currentScreen: Screen by remember { mutableStateOf(Screen.HelloWorld) }
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            if (!isShowMokoMvvmView) {
-                Button(
-                    onClick = {
-                        text = "Hello, ${getMokoResourcesText()}"
+            when (currentScreen) {
+                Screen.HelloWorld -> HelloWorldScreen(
+                    onButtonClick = {
+                        currentScreen = Screen.SimpleViewModel
                     }
-                ) {
-                    Text(text)
-                }
-
-                Button(
-                    onClick = {
-                        isShowMokoMvvmView = true
-                    }
-                ) {
-                    Text("Show moko mvvm engines")
-                }
-            } else {
-                SimpleScreen()
+                )
+                Screen.SimpleViewModel -> SimpleScreen()
             }
         }
     }
 }
 
-expect fun getMokoResourcesText(): String
+expect fun getPlatformName(): String

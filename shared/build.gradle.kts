@@ -32,13 +32,21 @@ kotlin {
     }
 
     sourceSets {
+        val mokoMvvmVersion = extra["mvvm.version"] as String
+        val mokoNetworkVersion = extra["network.version"] as String
+        val ktorVersion = extra["ktor.version"] as String
+
         val commonMain by getting {
+
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
+                implementation("dev.icerock.moko:network:$mokoNetworkVersion")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
                 api("dev.icerock.moko:mvvm-core:0.15.0")
                 api("io.ktor:ktor-client-core:2.2.4")
                 api("dev.icerock.moko:network:0.20.1")
@@ -52,16 +60,21 @@ kotlin {
         }
 
         val androidMain by getting {
+
             dependencies {
                 api("androidx.activity:activity-compose:1.6.1")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
+                api("io.ktor:ktor-client-okhttp:$ktorVersion")
                 api("io.ktor:ktor-client-okhttp:2.2.4")
                 api("dev.icerock.moko:biometry:0.2.0")
             }
         }
-
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                api("io.ktor:ktor-client-darwin:$ktorVersion")
+            }
+        }
 
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
@@ -70,7 +83,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
-                api("io.ktor:ktor-client-okhttp:2.2.4")
+                api("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.6.4")
             }
         }
@@ -80,7 +93,6 @@ kotlin {
 mokoNetwork {
     spec("jokes") {
         inputSpec = file("src/api/openapi.yml")
-        isInternal = false
     }
 }
 
