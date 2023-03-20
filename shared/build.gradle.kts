@@ -30,7 +30,7 @@ kotlin {
     }
 
     sourceSets {
-        val mokoMvvmVersion = extra["mokoMvvm.version"] as String
+        val mokoMvvmVersion = extra["moko.mvvm.version"] as String
 
         val commonMain by getting {
 
