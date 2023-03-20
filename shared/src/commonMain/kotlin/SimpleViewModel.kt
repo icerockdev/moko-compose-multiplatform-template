@@ -20,7 +20,7 @@ class SimpleViewModel : ViewModel() {
         } // Reference to kotlinx.serialization.json parser object
     )
 
-    fun apiRequest() {
+    fun onJokePress() {
         viewModelScope.launch {
             try {
                 val response = jokesApi.getRandomJoke()
