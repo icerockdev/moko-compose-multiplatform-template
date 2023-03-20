@@ -2,8 +2,8 @@
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.android.library")
+    kotlin("native.cocoapods")
     id("dev.icerock.mobile.multiplatform-network-generator")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.compose")
@@ -44,6 +44,10 @@ kotlin {
                 api("dev.icerock.moko:network:0.20.1")
                 api("dev.icerock.moko:resources:0.20.1")
 //                api("dev.icerock.moko:resources-compose:0.20.1")
+
+                //Could not resolve all dependencies for configuration ':shared:iosSimulatorArm64CompileKlibraries'.
+                //Could not resolve dev.icerock.moko:biometry:0.2.0.
+                //implementation("dev.icerock.moko:biometry:0.2.0")
             }
         }
 
@@ -53,6 +57,7 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
                 api("io.ktor:ktor-client-okhttp:2.2.4")
+                api("dev.icerock.moko:biometry:0.2.0")
             }
         }
 
