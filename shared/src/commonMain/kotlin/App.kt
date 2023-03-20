@@ -26,7 +26,7 @@ internal fun App() {
             if (!isShowMokoMvvmView) {
                 Button(
                     onClick = {
-                        text = "Hello, ${getPlatformName()}"
+                        text = "Hello, ${getMokoResourcesText()}"
                     }
                 ) {
                     Text(text)
@@ -46,4 +46,4 @@ internal fun App() {
     }
 }
 
-expect fun getPlatformName(): String
+expect fun getMokoResourcesText(): String

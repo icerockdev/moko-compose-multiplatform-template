@@ -1,12 +1,13 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
 plugins {
-    id("org.jetbrains.compose")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
     id("dev.icerock.mobile.multiplatform-network-generator")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 version = "1.0-SNAPSHOT"
@@ -41,8 +42,11 @@ kotlin {
                 api("dev.icerock.moko:mvvm-core:0.15.0")
                 api("io.ktor:ktor-client-core:2.2.4")
                 api("dev.icerock.moko:network:0.20.1")
+                api("dev.icerock.moko:resources:0.20.1")
+//                api("dev.icerock.moko:resources-compose:0.20.1")
             }
         }
+
         val androidMain by getting {
             dependencies {
                 api("androidx.activity:activity-compose:1.6.1")
@@ -51,10 +55,13 @@ kotlin {
                 api("io.ktor:ktor-client-okhttp:2.2.4")
             }
         }
+
         val iosMain by getting
+
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
         }
+
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
@@ -71,6 +78,11 @@ mokoNetwork {
         isInternal = false
     }
 }
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.myapplication.common"
+}
+
 
 android {
     compileSdk = 33
