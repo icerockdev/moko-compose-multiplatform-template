@@ -9,8 +9,8 @@ pluginManagement {
         val kotlinVersion = extra["kotlin.version"] as String
         val agpVersion = extra["agp.version"] as String
         val composeVersion = extra["compose.version"] as String
-        val kotlinSerializationVersion = extra["kotlinSerialization.version"] as String
-        val mokoNetworkVersion = extra["network.version"] as String
+        val kotlinSerializationVersion = extra["kotlin.serialization.version"] as String
+        val mokoNetworkVersion = extra["moko.network.version"] as String
 
         kotlin("jvm").version(kotlinVersion)
         kotlin("multiplatform").version(kotlinVersion)
