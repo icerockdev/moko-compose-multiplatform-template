@@ -31,13 +31,15 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            val mokoMvvmVersion = extra["mokoMvvm.version"] as String
+
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-                implementation("dev.icerock.moko:mvvm-core:0.15.0")
+                implementation("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
             }
         }
         val androidMain by getting {
