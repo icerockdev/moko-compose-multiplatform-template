@@ -35,7 +35,7 @@ internal fun App() {
             )
             Button(
                 onClick = {
-                    text = getMokoResourcesText()
+                    text = getPlatformName()
                 }
             ) {
                 Text("Get moko text")
@@ -44,4 +44,4 @@ internal fun App() {
     }
 }
 
-expect fun getMokoResourcesText(): String
+expect fun getPlatformName(): String

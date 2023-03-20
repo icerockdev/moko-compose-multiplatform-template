@@ -1,5 +1,7 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
+import org.jetbrains.kotlin.gradle.plugin.extraProperties
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -31,11 +33,13 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            val mokoResourcesVersion = extra["mokoResources.version"] as String
+
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                api("dev.icerock.moko:resources:0.20.1")
+                api("dev.icerock.moko:resources:${mokoResourcesVersion}")
 //                api("dev.icerock.moko:resources-compose:0.20.1")
             }
         }
