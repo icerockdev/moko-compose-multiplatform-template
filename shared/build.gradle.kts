@@ -1,7 +1,5 @@
 @file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
-import org.jetbrains.kotlin.gradle.plugin.extraProperties
-
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -33,7 +31,7 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            val mokoResourcesVersion = extra["mokoResources.version"] as String
+            val mokoResourcesVersion = extra["moko.resources.version"] as String
 
             dependencies {
                 implementation(compose.runtime)
