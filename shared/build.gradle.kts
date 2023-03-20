@@ -35,6 +35,7 @@ kotlin {
         val mokoMvvmVersion = extra["moko.mvvm.version"] as String
         val mokoNetworkVersion = extra["moko.network.version"] as String
         val mokoResourcesVersion = extra["moko.resources.version"] as String
+        val mokoBiometry = extra["moko.biometry.version"] as String
         val ktorVersion = extra["ktor.version"] as String
 
         val commonMain by getting {
@@ -52,14 +53,14 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("dev.icerock.moko:network:$mokoNetworkVersion")
                 implementation("dev.icerock.moko:resources:$mokoResourcesVersion")
-                implementation("dev.icerock.moko:biometry:0.2.0")
-//                implementation("dev.icerock.moko:biometry-iosarm64:0.2.0")
 
 //                api("dev.icerock.moko:resources-compose:0.20.1")
 
                 //Could not resolve all dependencies for configuration ':shared:iosSimulatorArm64CompileKlibraries'.
                 //Could not resolve dev.icerock.moko:biometry:0.2.0.
-                //implementation("dev.icerock.moko:biometry:0.2.0")
+                //implementation("dev.icerock.moko:biometry:$mokoBiometry")
+                // implementation("dev.icerock.moko:biometry-iosarm64:$mokoBiometry")
+
             }
         }
 
