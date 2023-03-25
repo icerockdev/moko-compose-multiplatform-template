@@ -38,7 +38,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 api("dev.icerock.moko:resources:${mokoResourcesVersion}")
-//                api("dev.icerock.moko:resources-compose:0.20.1")
+                api("dev.icerock.moko:resources-compose:0.21.0")
             }
         }
 
