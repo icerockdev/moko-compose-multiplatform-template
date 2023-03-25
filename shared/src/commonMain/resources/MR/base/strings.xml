@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="moko.resources.title">Привет moko</string>
+    <string name="hello_world">Hello moko-resources World</string>
 </resources>
