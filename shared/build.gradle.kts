@@ -1,8 +1,9 @@
 plugins {
+    id("com.android.library")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-    id("com.android.library")
     id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -22,21 +23,23 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
         val commonMain by getting {
+            val mokoResourcesVersion = extra["moko.resources.version"] as String
+
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
+                api("dev.icerock.moko:resources:${mokoResourcesVersion}")
+                api("dev.icerock.moko:resources-compose:${mokoResourcesVersion}")
             }
         }
+
         val androidMain by getting {
             dependencies {
                 api("androidx.activity:activity-compose:1.6.1")
@@ -53,6 +56,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
         }
+
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
@@ -60,6 +64,11 @@ kotlin {
         }
     }
 }
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.myapplication.common"
+}
+
 
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
@@ -80,4 +89,9 @@ android {
     kotlin {
         jvmToolchain(11)
     }
+}
+
+// workaround https://github.com/icerockdev/moko-resources/issues/421
+tasks.matching { it.name == "desktopProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRdesktopMain" })
 }
