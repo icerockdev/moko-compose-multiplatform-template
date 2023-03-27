@@ -23,7 +23,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
         }
     }
 
@@ -89,4 +89,9 @@ android {
     kotlin {
         jvmToolchain(11)
     }
+}
+
+// workaround https://github.com/icerockdev/moko-resources/issues/421
+tasks.matching { it.name == "desktopProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRdesktopMain" })
 }
