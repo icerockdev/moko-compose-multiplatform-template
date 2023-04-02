@@ -98,3 +98,6 @@ android {
 tasks.matching { it.name == "desktopProcessResources" }.configureEach {
     dependsOn(tasks.matching { it.name == "generateMRdesktopMain" })
 }
+tasks.matching { it.name == "iosSimulatorArm64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosSimulatorArm64Main" })
+}

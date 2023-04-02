@@ -25,10 +25,7 @@ import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
-fun HelloWorldScreen(
-    onButtonClick: () -> Unit
-) {
-
+fun HelloWorldScreen(onButtonClick: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
             .background(color = MaterialTheme.colors.background)

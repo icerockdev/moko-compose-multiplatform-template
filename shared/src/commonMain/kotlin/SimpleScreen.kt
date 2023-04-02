@@ -16,19 +16,17 @@ import androidx.compose.ui.unit.dp
 fun SimpleScreen(
     viewModel: SimpleViewModel = remember { SimpleViewModel() }
 ) {
-    val count: String by viewModel.count.collectAsState()
+    val count: Int by viewModel.count.collectAsState()
 
     Column(
         modifier = Modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = count
-        )
+        Text(text = count.toString())
+
         Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = viewModel::onCountClick
-        ) {
+
+        Button(onClick = viewModel::onCountClick) {
             Text(text = "Click on me")
         }
     }
