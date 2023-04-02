@@ -17,11 +17,12 @@ internal fun App() {
     ) {
         when (currentScreen) {
             Screen.HelloWorld -> HelloWorldScreen(
-                onButtonClick = {
-                    currentScreen = Screen.SimpleViewModel
-                }
+                onButtonClick = { currentScreen = Screen.SimpleViewModel }
             )
-            Screen.SimpleViewModel -> SimpleScreen()
+
+            Screen.SimpleViewModel -> SimpleScreen(
+                backAction = { currentScreen = Screen.HelloWorld }
+            )
         }
     }
 }
