@@ -22,7 +22,8 @@ import dev.icerock.moko.mvvm.compose.getViewModel
 @Composable
 internal fun SimpleScreen(
     backAction: () -> Unit,
-    viewModel: SimpleViewModel = getViewModel(key = "simple-screen") { SimpleViewModel() }
+    // can't use simplified `getViewModel` because of https://youtrack.jetbrains.com/issue/KT-57727
+    viewModel: SimpleViewModel = getViewModel(key = "simple-screen", klass = SimpleViewModel::class) { SimpleViewModel() }
 ) {
     val count: Int by viewModel.count.collectAsState()
 

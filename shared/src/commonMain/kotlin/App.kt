@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 internal fun App() {
+    // can't use simplified `getViewModel` because of https://youtrack.jetbrains.com/issue/KT-57727
     val appViewModel: AppViewModel =
         getViewModel(key = "app", klass = AppViewModel::class) { AppViewModel() }
     val currentScreen: Screen by appViewModel.currentScreen.collectAsState()
