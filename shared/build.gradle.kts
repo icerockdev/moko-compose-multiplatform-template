@@ -37,9 +37,10 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                api("dev.icerock.moko:resources:${mokoResourcesVersion}")
+
                 api("dev.icerock.moko:resources-compose:${mokoResourcesVersion}")
-                api("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
+
+                api("dev.icerock.moko:mvvm-compose:$mokoMvvmVersion")
             }
         }
 

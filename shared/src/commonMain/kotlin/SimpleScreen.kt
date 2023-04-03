@@ -14,15 +14,15 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.mvvm.compose.getViewModel
 
 @Composable
 internal fun SimpleScreen(
     backAction: () -> Unit,
-    viewModel: SimpleViewModel = remember { SimpleViewModel() }
+    viewModel: SimpleViewModel = getViewModel(key = "simple-screen") { SimpleViewModel() }
 ) {
     val count: Int by viewModel.count.collectAsState()
 
