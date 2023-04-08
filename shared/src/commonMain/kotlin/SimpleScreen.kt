@@ -18,12 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
 
 @Composable
 internal fun SimpleScreen(
     backAction: () -> Unit,
-    // can't use simplified `getViewModel` because of https://youtrack.jetbrains.com/issue/KT-57727
-    viewModel: SimpleViewModel = getViewModel(key = "simple-screen", klass = SimpleViewModel::class) { SimpleViewModel() }
+    viewModel: SimpleViewModel = getViewModel(
+        key = "simple-screen",
+        factory = viewModelFactory { SimpleViewModel() }
+    )
 ) {
     val count: Int by viewModel.count.collectAsState()
 

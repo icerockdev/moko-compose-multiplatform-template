@@ -1,46 +1,24 @@
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 
 @Composable
 internal fun App() {
-    // can't use simplified `getViewModel` because of https://youtrack.jetbrains.com/issue/KT-57727
-    val appViewModel: AppViewModel =
-        getViewModel(key = "app", klass = AppViewModel::class) { AppViewModel() }
-    val currentScreen: Screen by appViewModel.currentScreen.collectAsState()
+    var currentScreen: Screen by rememberSaveable { mutableStateOf(Screen.HelloWorld) }
 
-    MaterialTheme(
-        colors = if (isSystemInDarkTheme()) darkColors() else lightColors()
-    ) {
+    MaterialTheme {
         when (currentScreen) {
             Screen.HelloWorld -> HelloWorldScreen(
-                onButtonClick = { appViewModel.currentScreen.value = Screen.SimpleViewModel }
+                onButtonClick = { currentScreen = Screen.SimpleViewModel }
             )
 
             Screen.SimpleViewModel -> SimpleScreen(
-                backAction = { appViewModel.currentScreen.value = Screen.HelloWorld }
+                backAction = { currentScreen = Screen.HelloWorld }
             )
         }
-    }
-}
-
-class AppViewModel : ViewModel() {
-    val currentScreen: MutableStateFlow<Screen> = MutableStateFlow(Screen.HelloWorld)
-
-    init {
-        println("create $this")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        println("clear $this")
     }
 }
 
