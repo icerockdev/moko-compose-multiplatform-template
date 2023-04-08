@@ -25,6 +25,9 @@ kotlin {
             baseName = "shared"
             isStatic = false
         }
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+        extraSpecAttributes["exclude_files"] = "['src/commonMain/resources/MR/**']"
     }
 
     sourceSets {
@@ -37,7 +40,10 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
 
+                api("dev.icerock.moko:resources:${mokoResourcesVersion}")
                 api("dev.icerock.moko:resources-compose:${mokoResourcesVersion}")
 
                 api("dev.icerock.moko:mvvm-compose:$mokoMvvmVersion")
@@ -73,7 +79,6 @@ multiplatformResources {
     multiplatformResourcesPackage = "com.myapplication.common"
 }
 
-
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
     namespace = "com.myapplication.common"
@@ -81,6 +86,7 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].resources.exclude("src/commonMain/resources/MR")
 
     defaultConfig {
         minSdk = (findProperty("android.minSdk") as String).toInt()

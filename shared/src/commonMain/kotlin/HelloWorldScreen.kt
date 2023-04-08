@@ -23,7 +23,10 @@ import dev.icerock.moko.resources.compose.fontFamilyResource
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.readTextAsState
 import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource as composePainterResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun HelloWorldScreen(onButtonClick: () -> Unit) {
     Column(
@@ -78,6 +81,11 @@ internal fun HelloWorldScreen(onButtonClick: () -> Unit) {
             modifier = Modifier.padding(top = 16.dp),
             text = assetContent.orEmpty(),
             color = MaterialTheme.colors.onBackground
+        )
+
+        Image(
+            painter = composePainterResource("compose-multiplatform.xml"),
+            contentDescription = null
         )
     }
 }
