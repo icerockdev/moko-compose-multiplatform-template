@@ -33,6 +33,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             val mokoResourcesVersion = extra["moko.resources.version"] as String
+            val mokoMvvmVersion = extra["moko.mvvm.version"] as String
+
 
             dependencies {
                 implementation(compose.runtime)
@@ -43,6 +45,8 @@ kotlin {
 
                 api("dev.icerock.moko:resources:${mokoResourcesVersion}")
                 api("dev.icerock.moko:resources-compose:${mokoResourcesVersion}")
+
+                api("dev.icerock.moko:mvvm-compose:$mokoMvvmVersion")
             }
         }
 
@@ -75,7 +79,6 @@ multiplatformResources {
     multiplatformResourcesPackage = "com.myapplication.common"
 }
 
-
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
     namespace = "com.myapplication.common"
@@ -101,4 +104,19 @@ android {
 // workaround https://github.com/icerockdev/moko-resources/issues/421
 tasks.matching { it.name == "desktopProcessResources" }.configureEach {
     dependsOn(tasks.matching { it.name == "generateMRdesktopMain" })
+}
+tasks.matching { it.name == "iosSimulatorArm64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosSimulatorArm64Main" })
+}
+tasks.matching { it.name == "metadataIosMainProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRcommonMain" })
+}
+tasks.matching { it.name == "metadataCommonMainProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRcommonMain" })
+}
+tasks.matching { it.name == "iosX64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosX64Main" })
+}
+tasks.matching { it.name == "iosArm64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosArm64Main" })
 }
