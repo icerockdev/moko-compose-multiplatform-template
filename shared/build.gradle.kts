@@ -108,3 +108,15 @@ tasks.matching { it.name == "desktopProcessResources" }.configureEach {
 tasks.matching { it.name == "iosSimulatorArm64ProcessResources" }.configureEach {
     dependsOn(tasks.matching { it.name == "generateMRiosSimulatorArm64Main" })
 }
+tasks.matching { it.name == "metadataIosMainProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRcommonMain" })
+}
+tasks.matching { it.name == "metadataCommonMainProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRcommonMain" })
+}
+tasks.matching { it.name == "iosX64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosX64Main" })
+}
+tasks.matching { it.name == "iosArm64ProcessResources" }.configureEach {
+    dependsOn(tasks.matching { it.name == "generateMRiosArm64Main" })
+}
